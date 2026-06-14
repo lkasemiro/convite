@@ -3,11 +3,11 @@
   "short_name": "Convite",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#ffe5ec",
-  "theme_color": "#ff4d6d",
+"background_color": "#0d081b",
+  "theme_color": "#06b6d4",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/2589/2589175.png",
+      "src": "https://cdn-icons-png.flaticon.com/512/2311/2311330.png",
       "sizes": "512x512",
       "type": "image/png"
     }
