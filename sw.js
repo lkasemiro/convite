@@ -1,10 +1,11 @@
-const CACHE_NAME = 'convite-v1';
+const CACHE_NAME = 'convite-v2';
 const ASSETS = [
   './',
   './index.html',
   './style.css',
   './script.js',
-  './manifest.json'
+  './manifest.json',
+  './assets/capa.png'
 ];
 
 self.addEventListener('install', (e) => {

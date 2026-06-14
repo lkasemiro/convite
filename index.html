@@ -3,49 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convite Especial</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Guia Ouro Preto - As Igrejas Mais Conhecidas</title>
+    <link rel="stylesheet" href="style.css?v=6">
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
-    <div id="tela-convite" class="card">
-        <div class="icon-header">✨</div>
-        <h2>Se você não tiver nenhuma viagem marcada para ver minas e igrejas esse mês...</h2>
-        <p>O que você acha de fazer alguma coisa comigo? 👀</p>
-        <div class="btn-container">
-            <button id="btn-sim" onclick="aceitou()">Com certeza! </button>
-            <button id="btn-nao" onmouseover="fugirBotao()" onclick="clicouNoNao()">Não ❌</button>
-        </div>
-    </div>
-
-    <div id="tela-opcoes" class="card hidden">
-        <div class="icon-header">📅</div>
-        <h2>Sabia! Vamos organizar as coisas:</h2>
+    <div id="conteudo-turismo">
+        <header class="blog-header">
+            <h1>Guia Estrada Real</h1>
+        </header>
         
-        <label for="data">Que dia fica melhor para você?</label>
-        <input type="date" id="data" min="2026-06-01" max="2026-06-30">
-
-        <label>O que você quer fazer?</label>
-        <div class="opcoes-container">
-            <label><input type="radio" name="role" value="Feira + Comida boa" onclick="toggleSugestao(false)"> 🎪 Feira + Comida boa</label>
-            <label><input type="radio" name="role" value="Tomar um chopp de vinho" onclick="toggleSugestao(false)"> 🍷 Tomar um chopp de vinho</label>
-            <label><input type="radio" name="role" value="Karaokê" onclick="toggleSugestao(false)"> 🎤 Karaokê de qualidade duvidosa</label>
-            <label><input type="radio" name="role" value="Festa Junina" onclick="toggleSugestao(false)"> 🌽 Festa Junina</label>
-            <label><input type="radio" name="role" value="Passeio de bike" onclick="toggleSugestao(false)"> 🚲 Passeio de bike</label>
-            <label><input type="radio" name="role" value="Ver um jogo da Copa" onclick="toggleSugestao(false)"> ⚽ Ver um jogo da Copa</label>
-            <label><input type="radio" name="role" value="Cinema e Jantar" onclick="toggleSugestao(false)"> 🍽️ Cinema e Jantar</label>
-            <label><input type="radio" name="role" value="Outra coisa" id="opcao-outro" onclick="toggleSugestao(true)"> ✏️ Outra coisa... (Quero sugerir)</label>
+        <div class="hero-image-container">
+            <img src="assets/capa.png" alt="Igrejas de Minas Gerais" id="igreja-isca">
         </div>
 
-       <div id="container-sugestao" class="hidden">
-            <label for="sugestao-texto">O que você tem em mente? 🧠</label>
-            <textarea id="sugestao-texto" rows="3" placeholder="Escreve aqui sua ideia de rolê com detalhes..."></textarea>
-        </div>
-
-        <button id="btn-enviar" onclick="enviarResposta()">its a date? 🚀</button>
+        <article class="blog-article">
+            <h2>As Igrejas Mais Conhecidas de Ouro Preto</h2>
+            <p class="blog-meta">Por: Redação Turismo Minas • Atualizado este mês</p>
+            
+            <p>Minas Gerais é mundialmente famosa por suas ladeiras históricas e seu impressionante acervo de arte colonial. Se você costuma viajar para cá, sabe bem que caminhar por essas ruas é basicamente fazer um tour por minas antigas e igrejas barrocas deslumbrantes.</p>
+            
+            <h3>1. Igreja de São Francisco de Assis</h3>
+            <p>Esta é, sem dúvidas, a igreja mais conhecida e emblemática de Ouro Preto. Considerada uma das maiores obras-primas do barroco e rococó no Brasil, o templo teve seu projeto e esculturas desenvolvidos pelo mestre Antônio Francisco Lisboa, o Aleijadinho. O teto, pintado por Mestre Ataíde, retrata a assunção de Nossa Senhora e hipnotiza qualquer visitante que passa horas olhando para cima...</p>
+            
+            <p>Seja para apreciar a genialidade do traço colonial ou simplesmente bater ponto em mais um monumento histórico, essa parada é obrigatória em qualquer roteiro mineiro.</p>
+            
+            <div class="scroll-indicator">
+                <p>Continue rolando para ver o resto da lista</p>
+                <span class="arrow">↓</span>
+            </div>
+        </article>
     </div>
 
-    <script src="script.js?v=2"></script>
+    <div id="convite-revelado" class="hidden-fade">
+        
+        <div id="tela-convite" class="card">
+            <div class="icon-header">✨</div>
+            <h2>Na verdade, não sei se posso fazer isso, mas se você não tiver nenhuma viagem marcada para ver minas e igrejas esse mês...</h2>
+            <p class="card-p">O que você acha de fazer alguma coisa comigo? 👀</p>
+            <div class="btn-container">
+                <button id="btn-sim" onclick="aceitou()">Com certeza! </button>
+                <button id="btn-nao" onmouseover="fugirBotao()" onclick="clicouNoNao()">Não ❌</button>
+            </div>
+        </div>
+
+        <div id="tela-opcoes" class="card hidden">
+            <div class="icon-header">📅</div>
+            <h2>Sabia! Vamos organizar as coisas:</h2>
+            
+            <label for="data">Que dia fica melhor para você?</label>
+            <input type="date" id="data" min="2026-06-01" max="2026-06-30">
+
+            <label>O que você quer fazer?</label>
+            <div class="opcoes-container">
+                <label><input type="radio" name="role" value="Feira + Comida boa" onclick="toggleSugestao(false)"> 🎪 Feira + Comida boa</label>
+                <label><input type="radio" name="role" value="Tomar um chopp de vinho" onclick="toggleSugestao(false)"> 🍷 Tomar um chopp de vinho</label>
+                <label><input type="radio" name="role" value="Karaokê" onclick="toggleSugestao(false)"> 🎤 Karaokê de qualidade duvidosa</label>
+                <label><input type="radio" name="role" value="Festa Junina" onclick="toggleSugestao(false)"> 🌽 Festa Junina</label>
+                <label><input type="radio" name="role" value="Passeio de bike" onclick="toggleSugestao(false)"> 🚲 Passeio de bike</label>
+                <label><input type="radio" name="role" value="Ver um jogo da Copa" onclick="toggleSugestao(false)"> ⚽ Ver um jogo da Copa</label>
+                <label><input type="radio" name="role" value="Cinema e Jantar" onclick="toggleSugestao(false)"> 🍽️ Cinema e Jantar</label>
+                <label><input type="radio" name="role" value="Outra coisa" id="opcao-outro" onclick="toggleSugestao(true)"> ✏️ Outra coisa... (Quero sugerir)</label>
+            </div>
+
+            <div id="container-sugestao" class="hidden">
+                <label for="sugestao-texto">O que você tem em mente? 🧠</label>
+                <textarea id="sugestao-texto" rows="3" placeholder="Escreve aqui sua ideia de rolê com detalhes..."></textarea>
+            </div>
+
+            <button id="btn-enviar" onclick="enviarResposta()">Marcado!</button>
+        </div>
+
+    </div>
+
+    <script src="script.js?v=6"></script>
 </body>
 </html>

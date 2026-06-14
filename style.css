@@ -1,3 +1,6 @@
+/* ==========================================
+   1. RESET & CONFIGURAÇÕES GERAIS
+   ========================================== */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,13 +10,130 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     min-height: 100vh;
-    display: flex;
+    background-color: #fdfdfd; /* Começa com a cor de fundo limpa do blog */
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   2. FACHADA CATFISH (Blog de Turismo)
+   ========================================== */
+#conteudo-turismo {
+    background: #fdfdfd;
+    color: #333;
+    width: 100%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-bottom: 100px;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    opacity: 1;
+    position: relative;
+    z-index: 10;
+}
+
+.fade-out-blog {
+    opacity: 0 !important;
+    transform: translateY(-20px);
+    pointer-events: none; /* Desativa interações com o blog invisível */
+}
+
+.blog-header {
+    background: #f4f4f4;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.blog-header h1 {
+    font-size: 1.3rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero-image-container {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+}
+
+#igreja-isca {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.blog-article {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.blog-article h2 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    color: #111;
+}
+
+.blog-meta {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 25px;
+    font-family: -apple-system, sans-serif;
+}
+
+.blog-article h3 {
+    font-size: 1.3rem;
+    margin: 25px 0 10px;
+    color: #222;
+}
+
+.blog-article p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+/* Indicador de Scroll */
+.scroll-indicator {
+    text-align: center;
+    margin-top: 40px;
+    color: #999;
+    font-family: -apple-system, sans-serif;
+}
+
+.scroll-indicator .arrow {
+    display: block;
+    font-size: 1.5rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* ==========================================
+   3. CONVITE REVELADO (Fundo Aurora)
+   ========================================== */
+.hidden-fade {
+    display: none !important; /* Totalmente invisível e fora do fluxo de tela inicial */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     justify-content: center;
     align-items: center;
-    overflow-x: hidden;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 1s ease;
+    pointer-events: none;
     color: #ffffff;
     
-    /* GRADIENTE MESH: Mistura viva de cores neon em movimento */
+    /* GRADIENTE MESH NEON */
     background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
     background-image: 
         radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%),
@@ -26,14 +146,23 @@ body {
     animation: auroraMovement 15s ease infinite;
 }
 
-/* Animação suave para fazer as cores do fundo se mexerem */
+/* Ativado pelo JS no Scroll */
+.reveal-active {
+    display: flex !important;
+    opacity: 1 !important;
+    z-index: 999 !important;
+    pointer-events: auto !important;
+}
+
 @keyframes auroraMovement {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* O Card flutua como um vidro fosco sobre a aurora colorida */
+/* ==========================================
+   4. LAYOUT DO CARD & ELEMENTOS INTERNOS
+   ========================================== */
 .card {
     background: rgba(255, 255, 255, 0.07);
     backdrop-filter: blur(25px);
@@ -73,11 +202,13 @@ h2 {
     text-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
-p {
-    color: #e2e8f0;
+/* Parágrafo do cartão blindado contra heranças do blog */
+.card-p {
+    color: #e2e8f0 !important;
     font-size: 1.1rem;
     font-weight: 500;
     margin-bottom: 30px;
+    font-family: -apple-system, sans-serif !important;
 }
 
 .btn-container {
@@ -87,7 +218,9 @@ p {
     align-items: center;
 }
 
-/* Botão Sim: Explosão de degradê ciano/azul neon */
+/* ==========================================
+   5. BOTÕES
+   ========================================== */
 button {
     background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
     color: white;
@@ -99,6 +232,7 @@ button {
     font-weight: 700;
     box-shadow: 0 4px 20px rgba(6, 182, 212, 0.4);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: -apple-system, sans-serif;
 }
 
 button:hover {
@@ -107,7 +241,6 @@ button:hover {
     background: linear-gradient(135deg, #22d3ee 0%, #60a5fa 100%);
 }
 
-/* Botão Não: Discreto para destacar o Sim, mas ganha borda vermelha se ela tentar o clique */
 #btn-nao {
     background: rgba(255, 255, 255, 0.1);
     color: #f1f5f9;
@@ -122,7 +255,20 @@ button:hover {
     border-color: #ef4444;
 }
 
-/* Formulário de Opções */
+#btn-enviar {
+    width: 100%;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+}
+
+#btn-enviar:hover {
+    background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6);
+}
+
+/* ==========================================
+   6. FORMULÁRIO DE OPÇÕES & INPUTS
+   ========================================== */
 label {
     display: block;
     text-align: left;
@@ -130,9 +276,10 @@ label {
     font-weight: 700;
     color: #ffffff;
     font-size: 1rem;
+    font-family: -apple-system, sans-serif;
 }
 
-input[type="date"] {
+input[type="date"], textarea {
     width: 100%;
     padding: 14px;
     background: rgba(255, 255, 255, 0.12);
@@ -140,16 +287,21 @@ input[type="date"] {
     border-radius: 14px;
     color: white;
     font-size: 1rem;
-    font-family: inherit;
+    font-family: -apple-system, sans-serif;
     outline: none;
     font-weight: 600;
     transition: all 0.2s;
 }
 
-input[type="date"]:focus {
+input[type="date"]:focus, textarea:focus {
     border-color: #06b6d4;
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+}
+
+textarea {
+    margin-bottom: 15px;
+    resize: none;
 }
 
 .opcoes-container {
@@ -165,12 +317,12 @@ input[type="date"]:focus {
 .opcoes-container::-webkit-scrollbar {
     width: 6px;
 }
+
 .opcoes-container::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
 }
 
-/* Opções de Rolê: Itens em formato de pílulas modernas translúcidas */
 .opcoes-container label {
     font-weight: 600;
     display: flex;
@@ -197,67 +349,7 @@ input[type="date"]:focus {
     height: 20px;
 }
 
-/* Botão Enviar: Verde Neon Vibrante para o sucesso */
-#btn-enviar {
-    width: 100%;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
-}
-
-#btn-enviar:hover {
-    background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
-    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6);
-}
-input[type="text"] {
-    width: 100%;
-    padding: 14px;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 14px;
-    color: white;
-    font-size: 1rem;
-    font-family: inherit;
-    outline: none;
-    margin-bottom: 15px;
-    transition: all 0.2s;
-}
-
-input[type="text"]:focus {
-    border-color: #06b6d4;
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
-}
-
-#container-sugestao {
-    animation: slideDown 0.3s ease-out;
-}
-
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-textarea {
-    width: 100%;
-    padding: 14px;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 14px;
-    color: white;
-    font-size: 1rem;
-    font-family: inherit;
-    outline: none;
-    margin-bottom: 15px;
-    resize: none; /* Impede ela de quebrar o layout puxando o canto */
-    transition: all 0.2s;
-}
-
-textarea:focus {
-    border-color: #06b6d4;
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
-}
-
+/* Animação do painel de sugestão */
 #container-sugestao {
     animation: slideDown 0.3s ease-out;
 }

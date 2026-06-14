@@ -4,7 +4,24 @@ if ('serviceWorker' in navigator) {
         .then(() => console.log("Service Worker Registrado!"));
 }
 
-// Lógica do botão "Não" fugir
+// LÓGICA DO SCROLL: Transforma o blog de turismo no convite conforme ela desce a página
+window.addEventListener('scroll', function() {
+    const convite = document.getElementById('convite-revelado');
+    const conteudoTurismo = document.getElementById('conteudo-turismo');
+    
+    // Altura total da página disponível para scroll
+    const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+    // O quanto ela já scrollou atualmente
+    const atualScroll = window.scrollY;
+
+    // Quando ela rolar mais de 45% da página do blog, engatilha a transição sutil
+    if ((atualScroll / totalScroll) > 0.45) {
+        convite.classList.add('reveal-active');
+        conteudoTurismo.classList.add('fade-out-blog');
+    }
+});
+
+// Lógica do botão "Não" fugir da tela
 function fugirBotao() {
     const btnNao = document.getElementById('btn-nao');
     const x = Math.random() * (window.innerWidth - btnNao.offsetWidth - 20);
@@ -18,19 +35,19 @@ function clicouNoNao() {
     alert("Kkkk isso não é um botão de verdade... Tente o outro! 😉");
 }
 
-// Evita clique no celular e força o botão a fugir ao toque
+// Evita o clique no celular e força o botão a fugir instantaneamente ao toque
 document.getElementById('btn-nao').addEventListener('touchstart', function(e) {
     e.preventDefault();
     fugirBotao();
 });
 
-// Transição para a tela de opções
+// Transição interna: sai do convite e abre o formulário de opções
 function aceitou() {
     document.getElementById('tela-convite').classList.add('hidden');
     document.getElementById('tela-opcoes').classList.remove('hidden');
 }
 
-// Mostra ou esconde o Textarea de sugestão
+// Mostra ou esconde o Textarea de sugestão dependendo do radio clicado
 function toggleSugestao(mostrar) {
     const container = document.getElementById('container-sugestao');
     if (mostrar) {
@@ -41,7 +58,7 @@ function toggleSugestao(mostrar) {
     }
 }
 
-// Envia a resposta final formatada para o WhatsApp
+// Envia a resposta final formatada para o seu WhatsApp
 function enviarResposta() {
     const dataDefinida = document.getElementById('data').value;
     const roleSelecionado = document.querySelector('input[name="role"]:checked');
@@ -53,6 +70,7 @@ function enviarResposta() {
 
     let atividadeFinal = roleSelecionado.value;
 
+    // Se ela escolheu "Outra coisa", valida e puxa o texto do textarea
     if (roleSelecionado.value === "Outra coisa") {
         const textoSugestao = document.getElementById('sugestao-texto').value.trim();
         if (textoSugestao === "") {
@@ -62,11 +80,13 @@ function enviarResposta() {
         atividadeFinal = `Outra coisa: ${textoSugestao}`;
     }
 
+    // Formata a data de AAAA-MM-DD para DD/MM/AAAA
     const dataFormatada = dataDefinida.split('-').reverse().join('/');
     
-    // Troque pelo seu número real com DDD (Ex: 5521999999999)
+    // Seu número de destino definido
     const seuNumero = "5524999959066"; 
     
+    // Monta o template da mensagem e codifica a atividade (caso ela tenha escrito textão)
     const mensagem = `Oi! Aceitei o convite! 🥰%0A📅 Data: ${dataFormatada}%0A✨ Atividade: ${encodeURIComponent(atividadeFinal)}%0AFechado?`;
     
     window.open(`https://api.whatsapp.com/send?phone=${seuNumero}&text=${mensagem}`, '_blank');
