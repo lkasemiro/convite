@@ -34,6 +34,13 @@
             <label><input type="radio" name="role" value="Festa Junina"> 🌽 Festa Junina</label>
             <label><input type="radio" name="role" value="Passeio de bike"> 🚲 Passeio de bike</label>
             <label><input type="radio" name="role" value="Ver um jogo da Copa"> ⚽ Ver um jogo da Copa</label>
+            <label><input type="radio" name="role" value="Cinema e Jantar"> 🍽️ Cinema e Jantar</label>
+            <label><input type="radio" name="role" value="Outra coisa" id="opcao-outro" onclick="toggleSugestao(true)"> ✏️ Outra coisa... (Quero sugerir)</label>
+        </div>
+
+        <div id="container-sugestao" class="hidden">
+            <label for="sugestao-texto">O que você tem em mente? 🧠</label>
+            <input type="text" id="sugestao-texto" placeholder="Digita aqui sua ideia de rolê...">
         </div>
 
         <button id="btn-enviar" onclick="enviarResposta()">Confirmar Encontro! 🚀</button>
