@@ -3,31 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convite Especial Especial</title>
+    <title>Convite Especial</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
     <div id="tela-convite" class="card">
+        <div class="icon-header">✨</div>
         <h2>Se você não tiver nenhuma viagem marcada para ver minas e igrejas esse mês...</h2>
         <p>O que você acha de fazer alguma coisa comigo? 👀</p>
         <div class="btn-container">
-            <button id="btn-sim" onclick="aceitou()">Com certeza! 😊</button>
+            <button id="btn-sim" onclick="aceitou()">Com certeza! 🔥</button>
             <button id="btn-nao" onmouseover="fugirBotao()" onclick="clicouNoNao()">Não ❌</button>
         </div>
     </div>
 
     <div id="tela-opcoes" class="card hidden">
-        <h2>Sabia que aceitaria! Vamos planejar:</h2>
+        <div class="icon-header">📅</div>
+        <h2>Sabia! Vamos organizar as coisas:</h2>
         
         <label for="data">Que dia fica melhor para você?</label>
-        <input type="date" id="data" min="2026-06-01" max="2026-06-30"> <label>O que você quer fazer?</label>
+        <input type="date" id="data" min="2026-06-01" max="2026-06-30">
+
+        <label>O que você quer fazer?</label>
         <div class="opcoes-container">
-            <label><input type="radio" name="role" value="Passeio de bike"> 🚲 Passeio de bike</label>
+            <label><input type="radio" name="role" value="Feira + Comida boa"> 🎪 Feira + Comida boa</label>
             <label><input type="radio" name="role" value="Tomar um chopp de vinho"> 🍷 Tomar um chopp de vinho</label>
             <label><input type="radio" name="role" value="Karaokê"> 🎤 Karaokê de qualidade duvidosa</label>
             <label><input type="radio" name="role" value="Festa Junina"> 🌽 Festa Junina</label>
+            <label><input type="radio" name="role" value="Passeio de bike"> 🚲 Passeio de bike</label>
             <label><input type="radio" name="role" value="Ver um jogo da Copa"> ⚽ Ver um jogo da Copa</label>
         </div>
 
@@ -35,19 +40,16 @@
     </div>
 
     <script>
-        // Registrar o Service Worker para o PWA
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js')
                 .then(() => console.log("Service Worker Registrado!"));
         }
 
-        // Lógica do botão "Não" interativo
         function fugirBotao() {
             const btnNao = document.getElementById('btn-nao');
-            // Move o botão aleatoriamente pela tela
             const x = Math.random() * (window.innerWidth - btnNao.offsetWidth - 20);
             const y = Math.random() * (window.innerHeight - btnNao.offsetHeight - 20);
-            btnNao.style.position = 'absolute';
+            btnNao.style.position = 'fixed'; // 'fixed' funciona melhor para fugir na tela toda
             btnNao.style.left = `${x}px`;
             btnNao.style.top = `${y}px`;
         }
@@ -56,32 +58,32 @@
             alert("Kkkk isso não é um botão de verdade... Tente o outro! 😉");
         }
 
-        // Transição de tela
+        document.getElementById('btn-nao').addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Evita o clique no celular, forçando a fuga no toque
+            fugirBotao();
+        });
+
         function aceitou() {
             document.getElementById('tela-convite').classList.add('hidden');
             document.getElementById('tela-opcoes').classList.remove('hidden');
         }
 
-        // Envio dos dados via WhatsApp (Sem banco de dados)
         function enviarResposta() {
             const dataDefinida = document.getElementById('data').value;
             const roleSelecionado = document.querySelector('input[name="role"]:checked');
 
             if (!dataDefinida || !roleSelecionado) {
-                alert("Escolhe uma data e o que quer fazer, pô! Haha");
+                alert("Escolhe uma data e o que quer fazer! Haha");
                 return;
             }
 
-            // Formata a data para o padrão BR
             const dataFormatada = dataDefinida.split('-').reverse().join('/');
             
-            // Seu número de telefone (com DDD e código do país, sem espaços ou traços)
-            // Exemplo: 5521999999999
+            // Lembre de trocar pelo seu número com DDD (ex: 5521999999999)
             const seuNumero = "5524999959066"; 
             
             const mensagem = `Oi! Aceitei o convite! 🥰%0A📅 Data: ${dataFormatada}%0A✨ Atividade: ${roleSelecionado.value}%0AFechado?`;
             
-            // Abre o WhatsApp com a mensagem pronta
             window.open(`https://api.whatsapp.com/send?phone=${seuNumero}&text=${mensagem}`, '_blank');
         }
     </script>
